@@ -31,7 +31,7 @@ public class Adaptador extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return empleados.size();
+        return cargo.size();
     }
 
     @Override

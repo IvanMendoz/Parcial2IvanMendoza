@@ -2,6 +2,7 @@ package com.example.parcial2ivanmendoza_tpis1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -83,16 +84,24 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adaptador = new ArrayAdapter<String>( this, android.R.layout.simple_list_item_1 );
          */
 
-        Adaptador adaptador = new Adaptador( this, R.layout.empleados, empleados, cargo, compania, imagenes );
+        Adaptador adaptador = new Adaptador( this, R.layout.empleado, empleados, cargo, compania, imagenes );
         lista.setAdapter( adaptador );
 
 
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText( getApplicationContext(), "Selecciono> " + adapterView.getItemAtPosition( i ).toString(), Toast.LENGTH_LONG ).show();
+                Toast.makeText( getApplicationContext(), "Selecciono> " + empleados.get( i ), Toast.LENGTH_LONG ).show();
+                Intent intento = new Intent( getApplicationContext(), Empleado_seleccionado.class );
+                intento.putExtra( "nombre", empleados.get( i ) );
+                intento.putExtra( "cargo", cargo.get( i ) );
+                intento.putExtra( "compania", compania.get( i ) );
+                intento.putExtra( "imagen", imagenes[ i ] );
+                startActivity( intento );
             }
         });
+
+
 
 
     }
